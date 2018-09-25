@@ -3,7 +3,7 @@
 // Author      : Alex Cavalcante
 // Version     :
 // Copyright   : 2018.1
-// Description : Algoritmos de OrdenaÁ„o - Algoritmos Gulosos
+// Description : Algoritmos Gulosos - Kruskal
 //============================================================================
 
 #include<bits/stdc++.h>
@@ -83,11 +83,11 @@ struct Graph
         edges.push_back({w, {u, v}});
     }
 
-    //FunÁ„o para encontrar o MST usando o Kruskal
+    //Fun√ß√£o para encontrar o MST usando o Kruskal
     int kruskalMST();
 };
 
-// Verifica se eles s„o conjuntos disjuntos
+// Verifica se eles s√£o conjuntos disjuntos
 struct DisjointSets
 {
     //int *parent, *rnk;
@@ -97,34 +97,34 @@ struct DisjointSets
     // Constructor.
     DisjointSets(int n)
     {
-        // Inicialmente, todos os vÈrtices est„o em
+        // Inicialmente, todos os v√©rtices est√£o em
          // arvores diferentes e tem peso 0.
         for (int i = 0; i <= n; i++)
         {
                 ranks.push_back(0);
-                // cada elemento È pai de si mesmo
+                // cada elemento √© pai de si mesmo
                 parent.push_back(i);
         }
     }
 
-    // Encontre o pai de um nÛ 'u'
-     // Compress„o de caminho
+    // Encontre o pai de um n√≥ 'u'
+     // Compress√£o de caminho
     int find(int u)
     {
-        /* Torna o pai dos nÛs no caminho
+        /* Torna o pai dos n√≥s no caminho
             de u -> parent[u] aponta para o parent[u] */
         if (u != parent[u]) //Se for diferente procura o pai de U
             parent[u] = find(parent[u]);
         return parent[u];
     }
 
-    // Uni„o dos ranks
+    // Uni√£o dos ranks
     void merge(int x, int y)
     {
         x = find(x), y = find(y);
 
-       /* FaÁa ·rvore com menor altura
-            uma sub·rvore da outra ·rvore */
+       /* Fa√ßa √°rvore com menor altura
+            uma sub√°rvore da outra √°rvore */
         if (ranks[x] > ranks[y])
             parent[y] = x;
         else // If rnk[x] <= rnk[y]
@@ -135,7 +135,7 @@ struct DisjointSets
     }
 };
 
- /*FunÁıes retornam peso*/
+ /*Fun√ß√µes retornam peso*/
 int Graph::kruskalMST()
 {
     int mst_wt = 0; // Inicializa o resultado
@@ -156,10 +156,10 @@ int Graph::kruskalMST()
         int set_u = ds.find(u);
         int set_v = ds.find(v);
 
-        // Verifique se a aresta selecionada est· criando um ciclo ou n„o (ciclo È criado se u e v pertencem ao mesmo conjunto)
+        // Verifique se a aresta selecionada est√° criando um ciclo ou n√£o (ciclo √© criado se u e v pertencem ao mesmo conjunto)
         if (set_u != set_v)
         {
-            // A aresta atual estar· no MST ent„o imprima
+            // A aresta atual estar√° no MST ent√£o imprima
             cout << u << " - " << v << endl;
 
             // Atualiza o peso da arvore
@@ -188,7 +188,7 @@ int main(int argc, char* argv[])
     matriz = LerMatriz(matriz, file, n);
     PrintMatrix(matriz,n);
 
-    /* CriaÁ„o do grafo*/
+    /* Cria√ß√£o do grafo*/
     Graph g(n, n);
 
     /*Cria o grafo de acordo com a tabela, par ordenado e peso*/
@@ -196,10 +196,10 @@ int main(int argc, char* argv[])
         for(int j = 0; j < n; j++)
             g.addEdge(i, j, matriz[i][j]);
 
-    cout << "Arestas da Arvore s„o: \n";
+    cout << "Arestas da Arvore s√£o: \n";
     int mst_wt = g.kruskalMST();
 
-    cout << "\nPeso da ArvorÈ È:  " << mst_wt;
+    cout << "\nPeso da Arvor√© √©:  " << mst_wt;
 
     return 0;
 }
