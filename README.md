@@ -2,6 +2,8 @@
 #
 # Implementação de Algoritmos Gulosos
 # Version: 1.0 (Kruskal)
+# Version: 1.1 (Prim)
+# Version: 1.2 (Dijkstra)
 #
 # No diretório raiz do projeto, use os seguintes comandos:
 ## Linux
